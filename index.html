@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Anthill Group of Constructions</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --brown-dark:   #4a2e0e;
+    --brown-mid:    #7b4a1e;
+    --brown-light:  #c49a6c;
+    --gold:         #d4a547;
+    --gold-light:   #e8c47a;
+    --cream:        #faf5ee;
+    --cream-dark:   #f0e6d3;
+    --white:        #ffffff;
+    --text-dark:    #2c1a08;
+    --text-mid:     #5a3a1a;
+    --text-light:   #8a6a4a;
+    --gray-light:   #f5f0eb;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Nunito Sans', sans-serif; color: var(--text-dark); background: var(--white); }
+  a { text-decoration: none; color: inherit; }
+  img { display: block; width: 100%; }
+
+  /* ── TOP BAR ── */
+  .topbar {
+    background: var(--brown-dark);
+    color: rgba(255,255,255,0.75);
+    font-size: 12px;
+    padding: 6px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .topbar a { color: rgba(255,255,255,0.75); }
+  .topbar a:hover { color: var(--gold-light); }
+
+  /* ── NAVBAR ── */
+  nav {
+    background: var(--white);
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 12px rgba(74,46,14,0.1);
+    position: sticky; top: 0; z-index: 100;
+    height: 70px;
+  }
+  .logo-wrap { display: flex; align-items: center; gap: 12px; }
+  /* .logo-icon {
+    width: 52px; height: 52px;
+    background: var(--brown-dark);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--gold); font-size: 22px; font-weight: 700;
+    font-family: 'Playfair Display', serif;
+  } */
+  .logo-text { line-height: 1.2; }
+  .logo-text strong { display: block; font-family: 'Playfair Display', serif; font-size: 18px; color: var(--brown-dark); }
+  .logo-text span { font-size: 11px; color: var(--text-light); letter-spacing: 0.05em; }
+  .nav-links { display: flex; gap: 28px; align-items: center; }
+  .nav-links a { font-size: 13px; font-weight: 600; color: var(--text-mid); transition: color .2s; letter-spacing: 0.03em; text-transform: uppercase; }
+  .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+  .nav-cta {
+    background: var(--gold);
+    color: var(--brown-dark);
+    padding: 10px 22px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: background .2s;
+  }
+  .nav-cta:hover { background: var(--gold-light); }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    height: 520px;
+    overflow: hidden;
+    background: var(--brown-dark);
+  }
+  .hero-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    opacity: 0.55;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(74,46,14,0.85) 0%, rgba(74,46,14,0.4) 60%, transparent 100%);
+  }
+  .hero-content {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    justify-content: center;
+    padding: 60px 80px;
+    max-width: 720px;
+  }
+  .hero-tag {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--brown-dark);
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 5px 14px; border-radius: 2px;
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px; line-height: 1.2;
+    color: var(--white);
+    margin-bottom: 18px;
+  }
+  .hero p {
+    font-size: 15px; line-height: 1.7;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 32px;
+  }
+  .btn-gold {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--brown-dark);
+    padding: 13px 32px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: background .2s, transform .15s;
+    align-self: flex-start;
+  }
+  .btn-gold:hover { background: var(--gold-light); transform: translateY(-1px); }
+  .btn-outline {
+    display: inline-block;
+    border: 2px solid var(--gold);
+    color: var(--gold);
+    padding: 11px 28px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: all .2s;
+    margin-left: 14px;
+  }
+  .btn-outline:hover { background: var(--gold); color: var(--brown-dark); }
+  /* vision line */
+.section-sub ul {
+  padding-left: 20px; /* space for bullets */
+  margin: 0; 
+  list-style: disc; /* default bullets */
+}
+
+.section-sub ul li {
+  margin-bottom: 10px; /* spacing between points */
+  color: var(--gold); /* bullet & text color */
+}
+
+.section-sub ul li::marker {
+  color: var(--gold); /* ensure bullet itself is gold */
+}
+
+  /* ── SECTION COMMONS ── */
+  section { padding: 72px 60px; }
+  .section-tag {
+    display: inline-block;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px; font-weight: 700;
+    color: var(--brown-dark);
+    margin-bottom: 14px;
+    line-height: 1.25;
+  }
+  .section-divider {
+    width: 52px; height: 3px;
+    background: var(--gold);
+    margin: 0 0 20px;
+    border-radius: 2px;
+  }
+  .section-divider.center { margin: 0 auto 24px; }
+  .section-sub {
+    font-size: 15px; line-height: 1.75;
+    color: var(--text-light);
+    max-width: 640px;
+  }
+  .text-center { text-align: center; }
+  .text-center .section-sub { margin: 0 auto; }
+
+  /* ── ABOUT ── */
+  .about { background: var(--cream); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    margin-top: 40px;
+  }
+  .about-img-wrap {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    /* box-shadow: 0 20px 50px rgba(74,46,14,0.18); */
+  }
+.about-img-wrap img {
+  width: 400px;        /* must match height */
+  height: 400px;
+  object-fit: cover;
+  border-radius: 50%;
+}  /* .about-badge {
+    position: absolute; bottom: 20px; left: 20px;
+    background: var(--brown-dark);
+    color: var(--gold);
+    padding: 14px 20px;
+    border-radius: 6px;
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; font-weight: 700;
+    text-align: center;
+    line-height: 1.2;
+  } */
+  .about-badge span { display: block; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-top: 2px; font-family: 'Nunito Sans', sans-serif; font-weight: 400; }
+  .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 30px; }
+  .stat-card {
+    background: var(--white);
+    border-radius: 6px;
+    padding: 18px;
+    text-align: center;
+    border-bottom: 3px solid var(--gold);
+    box-shadow: 0 4px 16px rgba(74,46,14,0.07);
+  }
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: var(--brown-dark); }
+  .stat-label { font-size: 11px; color: var(--text-light); letter-spacing: 0.06em; text-transform: uppercase; margin-top: 4px; }
+
+  /* ── DIRECTOR ── */
+  .director { background: var(--white); }
+  .director-grid {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 50px;
+    align-items: flex-start;
+    margin-top: 36px;
+    padding: 36px;
+    background: var(--cream);
+    border-radius: 10px;
+    border-left: 5px solid var(--gold);
+  }
+  .director-photo {
+    width: 100%; border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(74,46,14,0.15);
+  }
+  .director-photo img { height: 300px; object-fit: cover; }
+  .director blockquote {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px; line-height: 1.7;
+    color: var(--text-dark);
+    font-style: italic;
+    margin-bottom: 20px;
+  }
+  .director blockquote::before { content: '\201C'; font-size: 60px; color: var(--gold); line-height: 0; vertical-align: -0.4em; margin-right: 4px; }
+  .director-name { font-weight: 700; font-size: 16px; color: var(--brown-dark); }
+  .director-role { font-size: 13px; color: var(--gold); letter-spacing: 0.05em; }
+
+  /* ── PROJECTS ── */
+  .projects { background: var(--gray-light); }
+  .projects-filter {
+    display: flex; gap: 10px; flex-wrap: wrap;
+    margin: 28px 0 36px;
+  }
+  .filter-btn {
+    padding: 7px 18px;
+    border-radius: 30px;
+    border: 1.5px solid var(--brown-light);
+    font-size: 12px; font-weight: 600;
+    color: var(--text-mid);
+    cursor: pointer;
+    transition: all .2s;
+    background: transparent;
+    letter-spacing: 0.03em;
+  }
+  .filter-btn:hover, .filter-btn.active {
+    background: var(--brown-dark);
+    border-color: var(--brown-dark);
+    color: var(--white);
+  }
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .project-card {
+    background: var(--white);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 6px 24px rgba(74,46,14,0.08);
+    transition: transform .25s, box-shadow .25s;
+    cursor: pointer;
+  }
+  .project-card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(74,46,14,0.15); }
+  .project-img { position: relative; height: 220px; overflow: hidden; }
+  .project-img img { height: 100%; object-fit: cover; transition: transform .4s; }
+  .project-card:hover .project-img img { transform: scale(1.05); }
+  .project-badge {
+    position: absolute; top: 14px; left: 14px;
+    background: var(--gold);
+    color: var(--brown-dark);
+    font-size: 10px; font-weight: 700;
+    padding: 4px 10px; border-radius: 2px;
+    letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .project-info { padding: 18px 20px; }
+  .project-title { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; color: var(--brown-dark); margin-bottom: 6px; }
+  .project-loc { font-size: 12px; color: var(--text-light); display: flex; align-items: center; gap: 4px; }
+  .project-loc::before { content: '📍'; font-size: 11px; }
+  .project-meta { display: flex; gap: 16px; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--cream-dark); }
+  .project-meta-item { font-size: 11px; color: var(--text-light); }
+  .project-meta-item strong { display: block; font-size: 13px; color: var(--text-dark); font-weight: 600; }
+
+  /* ── GALLERY ── */
+  .gallery { background: var(--white); padding-bottom: 80px; }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 180px;
+    gap: 12px;
+    margin-top: 36px;
+  }
+  .gallery-item {
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+  }
+  .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .3s; }
+  .gallery-item:hover img { transform: scale(1.06); }
+  .gallery-item.wide { grid-column: span 2; }
+  .gallery-item.tall { grid-row: span 2; }
+  .gallery-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(74,46,14,0.7), transparent);
+    opacity: 0; transition: opacity .3s;
+    display: flex; align-items: flex-end; padding: 14px;
+  }
+  .gallery-item:hover .gallery-overlay { opacity: 1; }
+  .gallery-overlay span { color: var(--white); font-size: 13px; font-weight: 600; }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials { background: var(--brown-dark); }
+  .testimonials .section-title { color: var(--gold-light); }
+  .testimonials .section-tag { color: var(--gold); }
+  .testimonials .section-divider { background: var(--gold); }
+  .testimonials .section-sub { color: rgba(255,255,255,0.6); }
+  .testi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 44px;
+  }
+  .testi-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(212,165,71,0.25);
+    border-radius: 10px;
+    padding: 28px;
+    transition: background .2s;
+  }
+  .testi-card:hover { background: rgba(255,255,255,0.1); }
+  .testi-stars { color: var(--gold); font-size: 14px; margin-bottom: 14px; letter-spacing: 2px; }
+  .testi-text { font-size: 14px; line-height: 1.8; color: rgba(255,255,255,0.75); font-style: italic; margin-bottom: 20px; }
+  .testi-author { display: flex; align-items: center; gap: 12px; }
+  .testi-avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 15px; color: var(--brown-dark);
+    flex-shrink: 0;
+  }
+  .testi-name { font-weight: 700; color: var(--gold-light); font-size: 14px; }
+  .testi-role { font-size: 12px; color: rgba(255,255,255,0.45); }
+
+  /* ── CONTACT ── */
+  .contact { background: var(--cream); }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    margin-top: 40px;
+  }
+  .contact-info h3 { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--brown-dark); margin-bottom: 24px; }
+  .contact-item { display: flex; gap: 14px; margin-bottom: 22px; align-items: flex-start; }
+  .contact-icon {
+    width: 40px; height: 40px; border-radius: 6px;
+    background: var(--brown-dark);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; flex-shrink: 0;
+  }
+  .contact-item-text strong { display: block; font-size: 13px; font-weight: 700; color: var(--brown-dark); margin-bottom: 3px; }
+  .contact-item-text p { font-size: 13px; color: var(--text-light); line-height: 1.5; }
+  .map-placeholder {
+    width: 100%; height: 200px;
+    background: var(--cream-dark);
+    border-radius: 8px; overflow: hidden;
+    margin-top: 20px;
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .map-placeholder span { font-size: 13px; color: var(--text-light); }
+  .contact-form { display: flex; flex-direction: column; gap: 16px; }
+  .form-row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-group label { font-size: 12px; font-weight: 700; color: var(--text-mid); letter-spacing: 0.04em; text-transform: uppercase; }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 11px 14px;
+    border: 1.5px solid var(--cream-dark);
+    border-radius: 5px;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 14px;
+    color: var(--text-dark);
+    background: var(--white);
+    transition: border-color .2s;
+    outline: none;
+    resize: vertical;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: var(--gold); }
+  .form-group textarea { min-height: 100px; }
+  .btn-submit {
+    background: var(--brown-dark);
+    color: var(--white);
+    padding: 14px 32px;
+    border: none;
+    border-radius: 5px;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 14px; font-weight: 700;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    cursor: pointer;
+    transition: background .2s, transform .15s;
+    align-self: flex-start;
+  }
+  .btn-submit:hover { background: var(--brown-mid); transform: translateY(-1px); }
+  /* ── whatapp icon ── */
+
+  .sticky-whatsapp {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #25D366;
+  padding: 12px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sticky-whatsapp img {
+  width: 28px;
+  height: 28px;
+} 
+  /* ── FOOTER ── */
+  footer {
+    background: var(--brown-dark);
+    color: rgba(255,255,255,0.65);
+    padding: 60px 60px 30px;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+  .footer-brand strong {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+  .footer-brand p { font-size: 13px; line-height: 1.7; margin-bottom: 20px; }
+  .social-row { display: flex; gap: 10px; }
+  .social-btn {
+    width: 34px; height: 34px;
+    border-radius: 6px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(212,165,71,0.2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background .2s;
+  }
+  .social-btn:hover { background: var(--gold); }
+  footer h4 { font-size: 13px; font-weight: 700; color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 16px; }
+  footer ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+  footer ul li a { font-size: 13px; color: rgba(255,255,255,0.55); transition: color .2s; }
+  footer ul li a:hover { color: var(--gold-light); }
+  footer ul li a::before { content: '→ '; color: var(--gold); font-size: 11px; }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 24px;
+    display: flex; justify-content: space-between;
+    font-size: 12px;
+    color: rgba(255,255,255,0.35);
+  }
+
+  /* ── STICKY CTA ── */
+  .sticky-whatsapp {
+    position: fixed; bottom: 28px; right: 28px;
+    background: #25D366;
+    color: var(--white);
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px;
+    box-shadow: 0 6px 20px rgba(37,211,102,0.4);
+    z-index: 999;
+    cursor: pointer;
+    transition: transform .2s;
+  }
+  .sticky-whatsapp:hover { transform: scale(1.1); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
+  .hero-content > * { animation: fadeUp .7s ease both; }
+  .hero-content > *:nth-child(1) { animation-delay: .1s; }
+  .hero-content > *:nth-child(2) { animation-delay: .25s; }
+  .hero-content > *:nth-child(3) { animation-delay: .4s; }
+  .hero-content > *:nth-child(4) { animation-delay: .55s; }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+<span>
+  📞 <a href="tel:+918080149191">91 8080149191</a>
+  &nbsp;|&nbsp;
+  ✉️ <a href="mailto:info.anthillgroup@gmail.com">info.anthillgroup@gmail.com</a>
+</span>  <span>Mon – Sat: 9:00 AM – 7:00 PM &nbsp;|&nbsp; <a href="#">Careers</a> &nbsp;|&nbsp; <a href="#">Blog</a></span>
+</div>
+
+<!-- NAVBAR -->
+<nav>
+ <div class="logo-wrap">
+  <div class="logo-icon">
+    <img src="images/header.png" alt="Anthill Logo">
+  </div>
+  <div class="logo-text">
+    <strong>Anthill</strong>
+    <span>Group of Construction</span>
+  </div>
+</div>
+  <div class="nav-links">
+    <a href="#" class="active">Home</a>
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#contact">Contact</a>
+  </div>
+<button id="getQuoteBtn" class="nav-cta">Get a Quote</button>
+<p id="quoteDisplay"></p></nav>
+
+<!-- HERO -->
+<section class="hero">
+  <!-- Using a warm construction-themed placeholder image -->
+  <img class="hero-img"
+    src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1400&q=80"
+    alt="Anthill Group Construction"
+    style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"/>
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <span class="hero-tag">+918080149191 , +919665755702 (पुणे, लातूर, बीड आणि नगर येथे सेवा उपलब्ध आहेत.)</span>
+    <h1>घराचे घरपण जपणारे इंजिनियर्स...</h1>
+    <p>Arichitectural Firm / Structural Consultant / Construction Company / Developer</p>
+    <div>
+      <a href="#projects" class="btn-gold">View Projects</a>
+      <a href="#contact" class="btn-outline">Contact Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="text-center">
+    <span class="section-tag">About Anthill Group</span>
+    <h2 class="section-title">Anthill Group of Construction</h2>
+    <div class="section-divider center"></div>
+    <span class="section-tag">Vision</span>
+    <p class="section-sub">To become a trusted and leading construction and design company known for delivering innovative, sustainable, and high-quality infrastructure that enhances lifestyles and creates lasting value for clients.</p>
+  </div>
+  <div class="about-grid">
+    <div class="about-img-wrap">
+      <img src="images/circle_image.png" alt="Construction"/>
+      <!-- <div class="about-badge">20+<span>Years of Trust</span></div> -->
+    </div>
+    <div>
+      <span class="section-tag">Our Mission</span>
+      <h3 class="section-title" style="font-size:26px">Building Futures,<br>One Home at a Time</h3>
+      <div class="section-divider"></div>
+      <p class="section-sub" style="max-width:100%">
+  <!-- <ul>
+    <li>To provide end-to-end construction, architectural, and structural solutions with precision and excellence.</li>
+    <li>To ensure superior quality, safety, and timely project delivery in every project.</li>
+    <li>To adopt modern technologies and innovative designs for better efficiency and aesthetics.</li>
+    <li>To build long-term relationships with clients through transparency, trust, and professionalism.</li>
+    <li>To contribute to sustainable development by implementing eco-friendly construction practices.</li>
+  </ul> -->
+  Building trust through quality, integrity, and excellence.
+Creating lasting structures that stand for generations.
+</p>
+      <div class="stats-row">
+        <div class="stat-card"><div class="stat-num">75+</div><div class="stat-label">Projects Completed</div></div>
+        <div class="stat-card"><div class="stat-num">300+</div><div class="stat-label">Happy Families</div></div>
+        <div class="stat-card"><div class="stat-num">4+</div><div class="stat-label">Years Experience</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIRECTOR MESSAGE -->
+<section class="director" id="director">
+  <span class="section-tag">Leaderships</span>
+  <h2 class="section-title">Director's Message</h2>
+  <div class="section-divider"></div>
+  <div class="director-grid">
+    <div class="director-photo">
+      <img src="images/leadership.jpeg" alt="Director"/>
+    </div>
+    <div>
+      <blockquote>At Anthill Group, we don't just construct buildings — we create communities. Every project we undertake is a commitment to quality, sustainability, and the trust our clients place in us. Our journey over the past two decades has been defined by a single principle: deliver more than what is promised.</blockquote>
+      <p class="section-sub" style="margin-bottom: 18px;">We continue to grow with the confidence of our customers and the dedication of our team. As we look ahead, our focus remains on building homes that stand the test of time.</p>
+      <div class="director-name">Mr. Prafull Kedar & Mr. Shrikant Khedkar</div>
+      <div class="director-role">Founders & Managing Directors</div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED PROJECTS -->
+<section class="projects" id="projects">
+  <div class="text-center">
+    <span class="section-tag">Our Work</span>
+    <h2 class="section-title">Featured Projects</h2>
+    <div class="section-divider center"></div>
+    <p class="section-sub">From row houses to high-rise residential apartments, explore our signature developments.</p>
+  </div>
+  <div class="projects-filter">
+    <button class="filter-btn active">All</button>
+    <button class="filter-btn">Row Houses</button>
+    <button class="filter-btn">Apartments</button>
+    <button class="filter-btn">Commercial</button>
+    <button class="filter-btn">Villas</button>
+  </div>
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <div class="project-img">
+        <img src="images/row_house.jpeg" alt="Row Houses"/>
+        <span class="project-badge">Row Houses</span>
+      </div>
+      <div class="project-info">
+        <div class="project-title">Prafull Niwas</div>
+        <div class="project-loc">Latur, Maharashtra</div>
+        <div class="project-meta">
+          <div class="project-meta-item"><strong>24</strong>Units</div>
+          <div class="project-meta-item"><strong>3 BHK</strong>Config</div>
+          <div class="project-meta-item"><strong>Ready</strong>Status</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-img">
+        <img src="images/row_house2.jpeg" alt="Apartments"/>
+        <span class="project-badge" style="background:var(--brown-dark);color:var(--gold)">Residential</span>
+      </div>
+      <div class="project-info">
+        <div class="project-title">Festival Apartments</div>
+        <div class="project-loc">Pune, Maharashtra</div>
+        <div class="project-meta">
+          <div class="project-meta-item"><strong>120</strong>Flats</div>
+          <div class="project-meta-item"><strong>2/3 BHK</strong>Config</div>
+          <div class="project-meta-item"><strong>Ready</strong>Status</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-img">
+        <img src="https://images.unsplash.com/photo-1613977257363-707ba9348227?w=600&q=80" alt="Villa"/>
+        <span class="project-badge">Villas</span>
+      </div>
+      <div class="project-info">
+        <div class="project-title">Anthill Greens</div>
+        <div class="project-loc">Amravati, Maharashtra</div>
+        <div class="project-meta">
+          <div class="project-meta-item"><strong>16</strong>Villas</div>
+          <div class="project-meta-item"><strong>4 BHK</strong>Config</div>
+          <div class="project-meta-item"><strong>Ready</strong>Status</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-img">
+        <img src="images/https://images.unsplash.com/photo-1486325212027-8081e485255e?w=600&q=80" alt="Commercial"/>
+        <span class="project-badge" style="background:var(--text-mid);color:var(--white)">Commercial</span>
+      </div>
+      <div class="project-info">
+        <div class="project-title">Anthill Business Park</div>
+        <div class="project-loc">Pune, Maharashtra</div>
+        <div class="project-meta">
+          <div class="project-meta-item"><strong>50+</strong>Offices</div>
+          <div class="project-meta-item"><strong>G+5</strong>Floors</div>
+          <div class="project-meta-item"><strong>Ready</strong>Status</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-img">
+        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&q=80" alt="Luxury Villa"/>
+        <span class="project-badge">Luxury</span>
+      </div>
+      <div class="project-info">
+        <div class="project-title">Anthill Regency</div>
+        <div class="project-loc">Nashik, Maharashtra</div>
+        <div class="project-meta">
+          <div class="project-meta-item"><strong>8</strong>Bungalows</div>
+          <div class="project-meta-item"><strong>5 BHK</strong>Config</div>
+          <div class="project-meta-item"><strong>Upcoming</strong>Status</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-img">
+        <img src="https://images.unsplash.com/photo-1560184897-ae75f418493e?w=600&q=80" alt="Apartment complex"/>
+        <span class="project-badge" style="background:var(--brown-dark);color:var(--gold)">Apartments</span>
+      </div>
+      <div class="project-info">
+        <div class="project-title">Anthill Residency</div>
+        <div class="project-loc">Aurangabad, Maharashtra</div>
+        <div class="project-meta">
+          <div class="project-meta-item"><strong>80</strong>Flats</div>
+          <div class="project-meta-item"><strong>1/2/3 BHK</strong>Config</div>
+          <div class="project-meta-item"><strong>Ongoing</strong>Status</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <div class="text-center">
+    <span class="section-tag">Visual Tour</span>
+    <h2 class="section-title">Construction &amp; Completion Gallery</h2>
+    <div class="section-divider center"></div>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item wide tall">
+      <img src="images/site_progress.webp" alt="Construction"/>
+      <div class="gallery-overlay"><span>Site Progress</span></div>
+    </div>
+    <div class="gallery-item">
+      <img src="images/11.jpeg" alt="Interior"/>
+      <div class="gallery-overlay"><span>Interior Design</span></div>
+    </div>
+    <div class="gallery-item">
+      <img src="images/2.jpeg" alt="Elevation"/>
+      <div class="gallery-overlay"><span>Elevation View</span></div>
+    </div>
+    <div class="gallery-item wide">
+      <img src="images/anthil_height.jpeg" alt="Apartments"/>
+      <div class="gallery-overlay"><span>Anthill Heights</span></div>
+    </div>
+    <div class="gallery-item">
+      <img src="images/10.jpeg" alt="Living room"/>
+      <div class="gallery-overlay"><span>Living Space</span></div>
+    </div>
+    <div class="gallery-item">
+      <img src="images/kitchen.jpeg" alt="Kitchen"/>
+      <div class="gallery-overlay"><span>Modern Kitchen</span></div>
+    </div>
+    <div class="gallery-item">
+      <img src="images/bedroom.jpeg" alt="Bedroom"/>
+      <div class="gallery-overlay"><span>Master Bedroom</span></div>
+    </div>
+    <div class="gallery-item">
+      <img src="images/8.jpeg" alt="Row house"/>
+      <div class="gallery-overlay"><span>Row Houses</span></div>
+    </div>
+    <div class="gallery-item">
+      <img src="images/road_site.jpeg" alt="road site"/>
+      <div class="gallery-overlay"><span>Road Sites</span></div>
+    </div>
+     <div class="gallery-item">
+      <img src="images/3.jpeg" alt="shree sadan"/>
+      <div class="gallery-overlay"><span>Shree Sadan</span></div>
+    </div>
+     <div class="gallery-item">
+      <img src="images/5.jpeg" alt="road site"/>
+      <div class="gallery-overlay"><span>MarkOut Sites</span></div>
+    </div>
+     <div class="gallery-item">
+      <img src="images/6.jpeg" alt="Column & Slab Casting"/>
+      <div class="gallery-overlay"><span>Column & Slab Casting</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="text-center">
+    <span class="section-tag">Client Stories</span>
+    <h2 class="section-title">What Our Clients Say</h2>
+    <div class="section-divider center"></div>
+    <p class="section-sub">Reviews Comming Soon.</p>
+  </div>
+  <!-- <div class="testi-grid"> -->
+    <!-- <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Anthill Group delivered our dream home on time and within budget. The quality of construction is outstanding. Every corner reflects their dedication to excellence."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">PR</div>
+        <div><div class="testi-name">Pradeep Rathod</div><div class="testi-role">Homeowner, Anthill Meadows</div></div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"From the first meeting to handing over the keys, the team was professional, transparent and genuinely caring. We couldn't be happier with our new apartment."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">SJ</div>
+        <div><div class="testi-name">Sunita Joshi</div><div class="testi-role">Resident, Anthill Heights</div></div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"The attention to detail in Anthill Greens is remarkable. Modern amenities, beautiful landscaping, and a wonderful community — exactly what we envisioned."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">AM</div>
+        <div><div class="testi-name">Amit Mehta</div><div class="testi-role">Villa Owner, Anthill Greens</div></div>
+      </div>
+    </div> -->
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="text-center">
+    <span class="section-tag">Get In Touch</span>
+    <h2 class="section-title">Contact Us</h2>
+    <div class="section-divider center"></div>
+    <p class="section-sub">Have questions about a project or want to schedule a site visit? We'd love to hear from you.</p>
+  </div>
+  <div class="contact-grid">
+    <div>
+      <h3>Our Office</h3>
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <div class="contact-item-text">
+          <strong>Address</strong>
+          <p>Anthill Group of Construction,<br>D-101, Bhagwant Complex, Bakori Road,<br>Pune – 412220, Maharashtra, India</p>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📞</div>
+        <div class="contact-item-text">
+          <strong>Phone</strong>
+          <p>+91 9665755702<br>+91 8080149191</p>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">✉️</div>
+        <div class="contact-item-text">
+          <strong>Email</strong>
+          <p>info.anthillgroup@gmail.com</p>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">🕐</div>
+        <div class="contact-item-text">
+          <strong>Office Hours</strong>
+          <p>Monday – Saturday: 9:00 AM – 7:00 PM<br>Sunday: By Appointment</p>
+        </div>
+      </div>
+     <div class="map-placeholder">
+  <a href="https://maps.app.goo.gl/Ko1GqmVMrxwLxuDp9" target="_blank">
+    <img 
+      src="images/map.png"
+      alt="Pune, Maharashtra"
+      style="width:100%; height:auto; border-radius:8px;"
+    >
+  </a>
+</div>
+    </div>
+    <div>
+      <h3 style="font-family:'Playfair Display',serif;font-size:22px;color:var(--brown-dark);margin-bottom:24px;">Send a Message</h3>
+      <!-- <form class="contact-form" onsubmit="return false">
+        <div class="form-row2">
+          <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" placeholder="Your name"/>
+          </div>
+          <div class="form-group">
+            <label>Phone</label>
+            <input type="tel" placeholder="+91 XXXXX XXXXX"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" placeholder="your@email.com"/>
+        </div>
+        <div class="form-group">
+          <label>Interested In</label>
+          <select>
+            <option>Select project type</option>
+            <option>Row Houses</option>
+            <option>Residential Apartments</option>
+            <option>Villas &amp; Bungalows</option>
+            <option>Commercial Space</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea placeholder="Tell us about your requirements…"></textarea>
+        </div>
+        <button class="btn-submit">Send Enquiry →</button>
+      </form> -->
+<form class="contact-form" onsubmit="sendToWhatsApp(); return false;">  
+  <div class="form-row2">
+    <div class="form-group">
+      <label>Full Name</label>
+      <input type="text" name="fullName" placeholder="Your name" required>
+    </div>
+    <div class="form-group">
+      <label>Phone</label>
+      <input type="tel" name="phone" placeholder="+91 XXXXX XXXXX" required>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>Email</label>
+    <input type="email" name="email" placeholder="your@email.com">
+  </div>
+
+  <div class="form-group">
+    <label>Interested In</label>
+    <select name="interestedIn">
+  <option value="" selected>Select project type</option>
+  <option value="Row Houses">Row Houses</option>
+  <option value="Residential Apartments">Residential Apartments</option>
+  <option value="Villas & Bungalows">Villas &amp; Bungalows</option>
+  <option value="Commercial Space">Commercial Space</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label>Message</label>
+    <textarea name="message" placeholder="Tell us about your requirements…"></textarea>
+  </div>
+
+  <button type="submit" class="btn-submit">Send Enquiry →</button>
+</form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <strong>Anthill Group of Constructions</strong>
+      <p>Building trust, quality, and lasting value for over two decades. Maharashtra's premier construction group for residential and commercial projects.</p>
+      <div class="social-row">
+       <a href="https://www.facebook.com/share/1C12HRZYqP/" class="social-btn" target="_blank" title="Facebook">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook" />
+</a>
+
+<a href="YOUR_LINKEDIN_LINK" class="social-btn" target="_blank" title="LinkedIn">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn" />
+</a>
+
+<a href="https://www.instagram.com/anthill.group?igsh=MW5oZjk3NWJsejBlZw==" class="social-btn" target="_blank" title="Instagram">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram" />
+</a>
+
+<a href="YOUR_YOUTUBE_LINK" class="social-btn" target="_blank" title="YouTube">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png" alt="YouTube" />
+</a>
+
+<a href="https://jsdl.in/DT-99JT7LDKTH6" class="social-btn" target="_blank" title="Justdial">
+  <img src="images/jdlogo.png" alt="Justdial" />
+</a>
+      </div>
+    </div>
+    <div>
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Projects</a></li>
+        <li><a href="#">Gallery</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Projects</h4>
+      <ul>
+        <li><a href="#">Anthill Meadows</a></li>
+        <li><a href="#">Anthill Heights</a></li>
+        <li><a href="#">Anthill Greens</a></li>
+        <li><a href="#">Anthill Regency</a></li>
+        <li><a href="#">Business Park</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="#">+91 9665755702</a></li>
+        <li><a href="#">+91 8080149191</a></li>
+        <li><a href="#">info.anthillgroup@gmail.com</a></li>
+        <li><a href="#">Latur, Maharashtra</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+<span>
+  © 2025 Anthill Group of Construction. All Rights Reserved. 
+  Powered by 
+  <a href="https://www.linkedin.com/in/yogeshbajgude?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">
+    Yogesh Bajgude
+  </a>
+</span>    <span>Designed with ❤️ for quality construction</span>
+  </div>
+</footer>
+
+<!-- WhatsApp Button -->
+<a href="https://wa.me/919665755702" class="sticky-whatsapp" target="_blank" title="Chat on WhatsApp">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+</a>
+<script>
+  // Filter buttons
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+    });
+  });
+
+  // Nav active on scroll
+  const sections = document.querySelectorAll('section[id]');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 80) current = s.id; });
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  });
+  // whats app message send
+function sendToWhatsApp() {
+  let name = document.querySelector('input[name="fullName"]').value;
+  let phone = document.querySelector('input[name="phone"]').value;
+  let email = document.querySelector('input[name="email"]').value;
+  let interest = document.querySelector('select[name="interestedIn"]').value;
+  let message = document.querySelector('textarea[name="message"]').value;
+
+  let text = `Hello, I have an enquiry:%0A
+Name: ${name}%0A
+Phone: ${phone}%0A
+Email: ${email}%0A
+Interested In: ${interest}%0A
+Message: ${message}`;
+
+  let whatsappURL = `https://wa.me/919665755702?text=${text}`;
+
+  window.open(whatsappURL, "_blank");
+}
+
+const quotes = {
+  English: [
+    "Quality is not an act, it is a habit in construction.",
+    "Good buildings come from good people, and all problems are solved by good planning.",
+    "Safety first, because nothing is more important than human life on a construction site.",
+    "Strong foundations make strong structures.",
+    "Innovation and precision are the pillars of every great project.",
+    "Timely delivery reflects discipline and professionalism in construction.",
+    "A building is only as good as the teamwork behind it.",
+    "Sustainable construction is the future of modern architecture.",
+    "Planning, patience, and persistence build better projects.",
+    "Every project starts with a vision and ends with excellence.",
+    "Trust is the foundation of every successful project.",
+    "Reliability and transparency build long-term relationships with clients.",
+    "A trustworthy contractor ensures peace of mind for every client.",
+    "Clients value honesty and integrity more than anything in construction.",
+    "Trust, combined with expertise, creates remarkable structures."
+  ],
+  Hindi: [
+    "निर्माण में गुणवत्ता केवल एक क्रिया नहीं, बल्कि एक आदत है।",
+    "अच्छी इमारतें अच्छे लोगों से बनती हैं, और सभी समस्याएं अच्छी योजना से हल होती हैं।",
+    "सुरक्षा पहले, क्योंकि निर्माण स्थल पर मानव जीवन से अधिक महत्वपूर्ण कुछ नहीं।",
+    "मजबूत नींव मजबूत संरचनाएँ बनाती हैं।",
+    "नवाचार और सटीकता हर महान परियोजना के स्तंभ हैं।",
+    "समय पर कार्य पूरा करना निर्माण में अनुशासन और पेशेवरिता को दर्शाता है।",
+    "भरोसेमंद ठेकेदार हर ग्राहक के लिए मानसिक शांति सुनिश्चित करता है।",
+    "विश्वसनीयता और पारदर्शिता दीर्घकालिक ग्राहक संबंध बनाती हैं।",
+    "क्लाइंट ईमानदारी और सत्यनिष्ठा को सबसे अधिक महत्व देते हैं।",
+    "योजना, धैर्य और लगातार प्रयास बेहतर परियोजनाएँ बनाते हैं।"
+  ],
+  Marathi: [
+    "निर्माणात गुणवत्ता ही फक्त क्रिया नाही, तर सवय आहे.",
+    "चांगली इमारती चांगल्या लोकांपासून तयार होतात, आणि सर्व समस्या चांगल्या नियोजनाने सोडवल्या जातात.",
+    "सुरक्षा सर्वप्रथम, कारण बांधकाम स्थळी मानवाचे जीवन सर्वोच्च आहे.",
+    "मजबूत पाया मजबूत संरचना तयार करतो.",
+    "नवोन्मेष आणि अचूकता प्रत्येक महान प्रकल्पाचे स्तंभ आहेत.",
+    "वेळेवर प्रकल्प पूर्ण करणे व्यावसायिकता आणि शिस्त दर्शवते.",
+    "विश्वासार्ह ठेकेदार प्रत्येक ग्राहकासाठी मानसिक शांतता सुनिश्चित करतो.",
+    "विश्वास आणि पारदर्शकता दीर्घकालीन ग्राहक संबंध तयार करतात.",
+    "ग्राहक ईमानदारी आणि प्रामाणिकपणाला जास्त महत्त्व देतात.",
+    "योजना, संयम, आणि सातत्यपूर्ण प्रयत्न उत्तम प्रकल्प तयार करतात."
+  ]
+};
+
+// On button click, pick a random language and random quote
+document.getElementById("getQuoteBtn").addEventListener("click", function() {
+  const languages = Object.keys(quotes);
+  const randomLang = languages[Math.floor(Math.random() * languages.length)];
+  const langQuotes = quotes[randomLang];
+  const randomQuote = langQuotes[Math.floor(Math.random() * langQuotes.length)];
+
+  document.getElementById("quoteDisplay").innerText = randomQuote;
+});
+</script>
+</body>
+</html>
