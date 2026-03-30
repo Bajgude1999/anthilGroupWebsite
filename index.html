@@ -4,536 +4,11 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Anthill Group of Constructions</title>
+<link rel="stylesheet" href="style.css">
+<script src="script.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet"/>
 <style>
-  :root {
-    --brown-dark:   #4a2e0e;
-    --brown-mid:    #7b4a1e;
-    --brown-light:  #c49a6c;
-    --gold:         #d4a547;
-    --gold-light:   #e8c47a;
-    --cream:        #faf5ee;
-    --cream-dark:   #f0e6d3;
-    --white:        #ffffff;
-    --text-dark:    #2c1a08;
-    --text-mid:     #5a3a1a;
-    --text-light:   #8a6a4a;
-    --gray-light:   #f5f0eb;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Nunito Sans', sans-serif; color: var(--text-dark); background: var(--white); }
-  a { text-decoration: none; color: inherit; }
-  img { display: block; width: 100%; }
-
-  /* ── TOP BAR ── */
-  .topbar {
-    background: var(--brown-dark);
-    color: rgba(255,255,255,0.75);
-    font-size: 12px;
-    padding: 6px 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .topbar a { color: rgba(255,255,255,0.75); }
-  .topbar a:hover { color: var(--gold-light); }
-
-  /* ── NAVBAR ── */
-  nav {
-    background: var(--white);
-    padding: 0 40px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    box-shadow: 0 2px 12px rgba(74,46,14,0.1);
-    position: sticky; top: 0; z-index: 100;
-    height: 70px;
-  }
-  .logo-wrap { display: flex; align-items: center; gap: 12px; }
-  /* .logo-icon {
-    width: 52px; height: 52px;
-    background: var(--brown-dark);
-    border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
-    color: var(--gold); font-size: 22px; font-weight: 700;
-    font-family: 'Playfair Display', serif;
-  } */
-  .logo-text { line-height: 1.2; }
-  .logo-text strong { display: block; font-family: 'Playfair Display', serif; font-size: 18px; color: var(--brown-dark); }
-  .logo-text span { font-size: 11px; color: var(--text-light); letter-spacing: 0.05em; }
-  .nav-links { display: flex; gap: 28px; align-items: center; }
-  .nav-links a { font-size: 13px; font-weight: 600; color: var(--text-mid); transition: color .2s; letter-spacing: 0.03em; text-transform: uppercase; }
-  .nav-links a:hover, .nav-links a.active { color: var(--gold); }
-  .nav-cta {
-    background: var(--gold);
-    color: var(--brown-dark);
-    padding: 10px 22px;
-    border-radius: 4px;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    transition: background .2s;
-  }
-  .nav-cta:hover { background: var(--gold-light); }
-
-  /* ── HERO ── */
-  .hero {
-    position: relative;
-    height: 520px;
-    overflow: hidden;
-    background: var(--brown-dark);
-  }
-  .hero-img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    opacity: 0.55;
-  }
-  .hero-bg {
-    position: absolute; inset: 0;
-    background: linear-gradient(135deg, rgba(74,46,14,0.85) 0%, rgba(74,46,14,0.4) 60%, transparent 100%);
-  }
-  .hero-content {
-    position: absolute; inset: 0;
-    display: flex; flex-direction: column;
-    justify-content: center;
-    padding: 60px 80px;
-    max-width: 720px;
-  }
-  .hero-tag {
-    display: inline-block;
-    background: var(--gold);
-    color: var(--brown-dark);
-    font-size: 11px; font-weight: 700;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    padding: 5px 14px; border-radius: 2px;
-    margin-bottom: 20px;
-  }
-  .hero h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 42px; line-height: 1.2;
-    color: var(--white);
-    margin-bottom: 18px;
-  }
-  .hero p {
-    font-size: 15px; line-height: 1.7;
-    color: rgba(255,255,255,0.8);
-    margin-bottom: 32px;
-  }
-  .btn-gold {
-    display: inline-block;
-    background: var(--gold);
-    color: var(--brown-dark);
-    padding: 13px 32px;
-    border-radius: 4px;
-    font-weight: 700;
-    font-size: 13px;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    transition: background .2s, transform .15s;
-    align-self: flex-start;
-  }
-  .btn-gold:hover { background: var(--gold-light); transform: translateY(-1px); }
-  .btn-outline {
-    display: inline-block;
-    border: 2px solid var(--gold);
-    color: var(--gold);
-    padding: 11px 28px;
-    border-radius: 4px;
-    font-weight: 700;
-    font-size: 13px;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    transition: all .2s;
-    margin-left: 14px;
-  }
-  .btn-outline:hover { background: var(--gold); color: var(--brown-dark); }
-  /* vision line */
-.section-sub ul {
-  padding-left: 20px; /* space for bullets */
-  margin: 0; 
-  list-style: disc; /* default bullets */
-}
-
-.section-sub ul li {
-  margin-bottom: 10px; /* spacing between points */
-  color: var(--gold); /* bullet & text color */
-}
-
-.section-sub ul li::marker {
-  color: var(--gold); /* ensure bullet itself is gold */
-}
-
-  /* ── SECTION COMMONS ── */
-  section { padding: 72px 60px; }
-  .section-tag {
-    display: inline-block;
-    font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 10px;
-  }
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 32px; font-weight: 700;
-    color: var(--brown-dark);
-    margin-bottom: 14px;
-    line-height: 1.25;
-  }
-  .section-divider {
-    width: 52px; height: 3px;
-    background: var(--gold);
-    margin: 0 0 20px;
-    border-radius: 2px;
-  }
-  .section-divider.center { margin: 0 auto 24px; }
-  .section-sub {
-    font-size: 15px; line-height: 1.75;
-    color: var(--text-light);
-    max-width: 640px;
-  }
-  .text-center { text-align: center; }
-  .text-center .section-sub { margin: 0 auto; }
-
-  /* ── ABOUT ── */
-  .about { background: var(--cream); }
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: center;
-    margin-top: 40px;
-  }
-  .about-img-wrap {
-    position: relative;
-    border-radius: 8px;
-    overflow: hidden;
-    /* box-shadow: 0 20px 50px rgba(74,46,14,0.18); */
-  }
-.about-img-wrap img {
-  width: 400px;        /* must match height */
-  height: 400px;
-  object-fit: cover;
-  border-radius: 50%;
-}  /* .about-badge {
-    position: absolute; bottom: 20px; left: 20px;
-    background: var(--brown-dark);
-    color: var(--gold);
-    padding: 14px 20px;
-    border-radius: 6px;
-    font-family: 'Playfair Display', serif;
-    font-size: 22px; font-weight: 700;
-    text-align: center;
-    line-height: 1.2;
-  } */
-  .about-badge span { display: block; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-top: 2px; font-family: 'Nunito Sans', sans-serif; font-weight: 400; }
-  .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 30px; }
-  .stat-card {
-    background: var(--white);
-    border-radius: 6px;
-    padding: 18px;
-    text-align: center;
-    border-bottom: 3px solid var(--gold);
-    box-shadow: 0 4px 16px rgba(74,46,14,0.07);
-  }
-  .stat-num { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: var(--brown-dark); }
-  .stat-label { font-size: 11px; color: var(--text-light); letter-spacing: 0.06em; text-transform: uppercase; margin-top: 4px; }
-
-  /* ── DIRECTOR ── */
-  .director { background: var(--white); }
-  .director-grid {
-    display: grid;
-    grid-template-columns: 260px 1fr;
-    gap: 50px;
-    align-items: flex-start;
-    margin-top: 36px;
-    padding: 36px;
-    background: var(--cream);
-    border-radius: 10px;
-    border-left: 5px solid var(--gold);
-  }
-  .director-photo {
-    width: 100%; border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(74,46,14,0.15);
-  }
-  .director-photo img { height: 300px; object-fit: cover; }
-  .director blockquote {
-    font-family: 'Playfair Display', serif;
-    font-size: 18px; line-height: 1.7;
-    color: var(--text-dark);
-    font-style: italic;
-    margin-bottom: 20px;
-  }
-  .director blockquote::before { content: '\201C'; font-size: 60px; color: var(--gold); line-height: 0; vertical-align: -0.4em; margin-right: 4px; }
-  .director-name { font-weight: 700; font-size: 16px; color: var(--brown-dark); }
-  .director-role { font-size: 13px; color: var(--gold); letter-spacing: 0.05em; }
-
-  /* ── PROJECTS ── */
-  .projects { background: var(--gray-light); }
-  .projects-filter {
-    display: flex; gap: 10px; flex-wrap: wrap;
-    margin: 28px 0 36px;
-  }
-  .filter-btn {
-    padding: 7px 18px;
-    border-radius: 30px;
-    border: 1.5px solid var(--brown-light);
-    font-size: 12px; font-weight: 600;
-    color: var(--text-mid);
-    cursor: pointer;
-    transition: all .2s;
-    background: transparent;
-    letter-spacing: 0.03em;
-  }
-  .filter-btn:hover, .filter-btn.active {
-    background: var(--brown-dark);
-    border-color: var(--brown-dark);
-    color: var(--white);
-  }
-  .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-  }
-  .project-card {
-    background: var(--white);
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 6px 24px rgba(74,46,14,0.08);
-    transition: transform .25s, box-shadow .25s;
-    cursor: pointer;
-  }
-  .project-card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(74,46,14,0.15); }
-  .project-img { position: relative; height: 220px; overflow: hidden; }
-  .project-img img { height: 100%; object-fit: cover; transition: transform .4s; }
-  .project-card:hover .project-img img { transform: scale(1.05); }
-  .project-badge {
-    position: absolute; top: 14px; left: 14px;
-    background: var(--gold);
-    color: var(--brown-dark);
-    font-size: 10px; font-weight: 700;
-    padding: 4px 10px; border-radius: 2px;
-    letter-spacing: 0.06em; text-transform: uppercase;
-  }
-  .project-info { padding: 18px 20px; }
-  .project-title { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; color: var(--brown-dark); margin-bottom: 6px; }
-  .project-loc { font-size: 12px; color: var(--text-light); display: flex; align-items: center; gap: 4px; }
-  .project-loc::before { content: '📍'; font-size: 11px; }
-  .project-meta { display: flex; gap: 16px; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--cream-dark); }
-  .project-meta-item { font-size: 11px; color: var(--text-light); }
-  .project-meta-item strong { display: block; font-size: 13px; color: var(--text-dark); font-weight: 600; }
-
-  /* ── GALLERY ── */
-  .gallery { background: var(--white); padding-bottom: 80px; }
-  .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-auto-rows: 180px;
-    gap: 12px;
-    margin-top: 36px;
-  }
-  .gallery-item {
-    border-radius: 6px;
-    overflow: hidden;
-    cursor: pointer;
-    position: relative;
-  }
-  .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .3s; }
-  .gallery-item:hover img { transform: scale(1.06); }
-  .gallery-item.wide { grid-column: span 2; }
-  .gallery-item.tall { grid-row: span 2; }
-  .gallery-overlay {
-    position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(74,46,14,0.7), transparent);
-    opacity: 0; transition: opacity .3s;
-    display: flex; align-items: flex-end; padding: 14px;
-  }
-  .gallery-item:hover .gallery-overlay { opacity: 1; }
-  .gallery-overlay span { color: var(--white); font-size: 13px; font-weight: 600; }
-
-  /* ── TESTIMONIALS ── */
-  .testimonials { background: var(--brown-dark); }
-  .testimonials .section-title { color: var(--gold-light); }
-  .testimonials .section-tag { color: var(--gold); }
-  .testimonials .section-divider { background: var(--gold); }
-  .testimonials .section-sub { color: rgba(255,255,255,0.6); }
-  .testi-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-    margin-top: 44px;
-  }
-  .testi-card {
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(212,165,71,0.25);
-    border-radius: 10px;
-    padding: 28px;
-    transition: background .2s;
-  }
-  .testi-card:hover { background: rgba(255,255,255,0.1); }
-  .testi-stars { color: var(--gold); font-size: 14px; margin-bottom: 14px; letter-spacing: 2px; }
-  .testi-text { font-size: 14px; line-height: 1.8; color: rgba(255,255,255,0.75); font-style: italic; margin-bottom: 20px; }
-  .testi-author { display: flex; align-items: center; gap: 12px; }
-  .testi-avatar {
-    width: 40px; height: 40px; border-radius: 50%;
-    background: var(--gold);
-    display: flex; align-items: center; justify-content: center;
-    font-weight: 700; font-size: 15px; color: var(--brown-dark);
-    flex-shrink: 0;
-  }
-  .testi-name { font-weight: 700; color: var(--gold-light); font-size: 14px; }
-  .testi-role { font-size: 12px; color: rgba(255,255,255,0.45); }
-
-  /* ── CONTACT ── */
-  .contact { background: var(--cream); }
-  .contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 50px;
-    margin-top: 40px;
-  }
-  .contact-info h3 { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--brown-dark); margin-bottom: 24px; }
-  .contact-item { display: flex; gap: 14px; margin-bottom: 22px; align-items: flex-start; }
-  .contact-icon {
-    width: 40px; height: 40px; border-radius: 6px;
-    background: var(--brown-dark);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 16px; flex-shrink: 0;
-  }
-  .contact-item-text strong { display: block; font-size: 13px; font-weight: 700; color: var(--brown-dark); margin-bottom: 3px; }
-  .contact-item-text p { font-size: 13px; color: var(--text-light); line-height: 1.5; }
-  .map-placeholder {
-    width: 100%; height: 200px;
-    background: var(--cream-dark);
-    border-radius: 8px; overflow: hidden;
-    margin-top: 20px;
-    position: relative;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .map-placeholder span { font-size: 13px; color: var(--text-light); }
-  .contact-form { display: flex; flex-direction: column; gap: 16px; }
-  .form-row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-  .form-group { display: flex; flex-direction: column; gap: 6px; }
-  .form-group label { font-size: 12px; font-weight: 700; color: var(--text-mid); letter-spacing: 0.04em; text-transform: uppercase; }
-  .form-group input,
-  .form-group select,
-  .form-group textarea {
-    padding: 11px 14px;
-    border: 1.5px solid var(--cream-dark);
-    border-radius: 5px;
-    font-family: 'Nunito Sans', sans-serif;
-    font-size: 14px;
-    color: var(--text-dark);
-    background: var(--white);
-    transition: border-color .2s;
-    outline: none;
-    resize: vertical;
-  }
-  .form-group input:focus,
-  .form-group select:focus,
-  .form-group textarea:focus { border-color: var(--gold); }
-  .form-group textarea { min-height: 100px; }
-  .btn-submit {
-    background: var(--brown-dark);
-    color: var(--white);
-    padding: 14px 32px;
-    border: none;
-    border-radius: 5px;
-    font-family: 'Nunito Sans', sans-serif;
-    font-size: 14px; font-weight: 700;
-    letter-spacing: 0.06em; text-transform: uppercase;
-    cursor: pointer;
-    transition: background .2s, transform .15s;
-    align-self: flex-start;
-  }
-  .btn-submit:hover { background: var(--brown-mid); transform: translateY(-1px); }
-  /* ── whatapp icon ── */
-
-  .sticky-whatsapp {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: #25D366;
-  padding: 12px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.sticky-whatsapp img {
-  width: 28px;
-  height: 28px;
-} 
-  /* ── FOOTER ── */
-  footer {
-    background: var(--brown-dark);
-    color: rgba(255,255,255,0.65);
-    padding: 60px 60px 30px;
-  }
-  .footer-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
-    gap: 40px;
-    margin-bottom: 40px;
-  }
-  .footer-brand strong {
-    display: block;
-    font-family: 'Playfair Display', serif;
-    font-size: 20px;
-    color: var(--gold);
-    margin-bottom: 12px;
-  }
-  .footer-brand p { font-size: 13px; line-height: 1.7; margin-bottom: 20px; }
-  .social-row { display: flex; gap: 10px; }
-  .social-btn {
-    width: 34px; height: 34px;
-    border-radius: 6px;
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(212,165,71,0.2);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 14px;
-    cursor: pointer;
-    transition: background .2s;
-  }
-  .social-btn:hover { background: var(--gold); }
-  footer h4 { font-size: 13px; font-weight: 700; color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 16px; }
-  footer ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
-  footer ul li a { font-size: 13px; color: rgba(255,255,255,0.55); transition: color .2s; }
-  footer ul li a:hover { color: var(--gold-light); }
-  footer ul li a::before { content: '→ '; color: var(--gold); font-size: 11px; }
-  .footer-bottom {
-    border-top: 1px solid rgba(255,255,255,0.08);
-    padding-top: 24px;
-    display: flex; justify-content: space-between;
-    font-size: 12px;
-    color: rgba(255,255,255,0.35);
-  }
-
-  /* ── STICKY CTA ── */
-  .sticky-whatsapp {
-    position: fixed; bottom: 28px; right: 28px;
-    background: #25D366;
-    color: var(--white);
-    width: 52px; height: 52px;
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 24px;
-    box-shadow: 0 6px 20px rgba(37,211,102,0.4);
-    z-index: 999;
-    cursor: pointer;
-    transition: transform .2s;
-  }
-  .sticky-whatsapp:hover { transform: scale(1.1); }
-
-  /* ── ANIMATIONS ── */
-  @keyframes fadeUp { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
-  .hero-content > * { animation: fadeUp .7s ease both; }
-  .hero-content > *:nth-child(1) { animation-delay: .1s; }
-  .hero-content > *:nth-child(2) { animation-delay: .25s; }
-  .hero-content > *:nth-child(3) { animation-delay: .4s; }
-  .hero-content > *:nth-child(4) { animation-delay: .55s; }
+ 
 </style>
 </head>
 <body>
@@ -658,7 +133,8 @@ Creating lasting structures that stand for generations.
     <button class="filter-btn">Commercial</button>
     <button class="filter-btn">Villas</button>
   </div>
-  <div class="projects-grid">
+  <div class="projects-grid"></div><p class="section-sub">Projects Comming Soon.</p></div>
+  <!-- <div class="projects-grid">
 
     <div class="project-card">
       <div class="project-img">
@@ -756,7 +232,7 @@ Creating lasting structures that stand for generations.
       </div>
     </div>
 
-  </div>
+  </div> -->
 </section>
 
 <!-- GALLERY -->
@@ -872,18 +348,21 @@ Creating lasting structures that stand for generations.
           <p>Anthill Group of Construction,<br>D-101, Bhagwant Complex, Bakori Road,<br>Pune – 412220, Maharashtra, India</p>
         </div>
       </div>
-      <div class="contact-item">
-        <div class="contact-icon">📞</div>
-        <div class="contact-item-text">
-          <strong>Phone</strong>
-          <p>+91 9665755702<br>+91 8080149191</p>
-        </div>
-      </div>
+     <div class="contact-item">
+  <div class="contact-icon">📞</div>
+  <div class="contact-item-text">
+    <strong>Phone</strong>
+    <p>
+      <a href="tel:+919665755702">+91 9665755702</a><br>
+      <a href="tel:+918080149191">+91 8080149191</a>
+    </p>
+  </div>
+</div>
       <div class="contact-item">
         <div class="contact-icon">✉️</div>
         <div class="contact-item-text">
           <strong>Email</strong>
-          <p>info.anthillgroup@gmail.com</p>
+          <p><a href="mailto:info.anthillgroup@gmail.com">info.anthillgroup@gmail.com</a></p>
         </div>
       </div>
       <div class="contact-item">
@@ -1026,12 +505,14 @@ Creating lasting structures that stand for generations.
     <div>
       <h4>Contact</h4>
       <ul>
-        <li><a href="#">+91 9665755702</a></li>
-        <li><a href="#">+91 8080149191</a></li>
-        <li><a href="#">info.anthillgroup@gmail.com</a></li>
+        <li><a href="tel:+919665755702">+91 9665755702</a></li>
+        <li><a href="tel:+918080149191">+91 8080149191</a></li>
+        <li><a href="mailto:info.anthillgroup@gmail.com">info.anthillgroup@gmail.com</a></li>
         <li><a href="#">Latur, Maharashtra</a></li>
         <li><a href="#">Careers</a></li>
-        <li><a href="#">Privacy Policy</a></li>
+        <li> <a href="privacy-policy.html" target="_blank" rel="noopener noreferrer">
+    Privacy Policy
+  </a></li>
       </ul>
     </div>
   </div>
@@ -1051,104 +532,7 @@ Creating lasting structures that stand for generations.
   <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
 </a>
 <script>
-  // Filter buttons
-  document.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.addEventListener('click', function() {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      this.classList.add('active');
-    });
-  });
-
-  // Smooth scroll
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', e => {
-      const target = document.querySelector(a.getAttribute('href'));
-      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
-    });
-  });
-
-  // Nav active on scroll
-  const sections = document.querySelectorAll('section[id]');
-  window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 80) current = s.id; });
-    document.querySelectorAll('.nav-links a').forEach(a => {
-      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
-    });
-  });
-  // whats app message send
-function sendToWhatsApp() {
-  let name = document.querySelector('input[name="fullName"]').value;
-  let phone = document.querySelector('input[name="phone"]').value;
-  let email = document.querySelector('input[name="email"]').value;
-  let interest = document.querySelector('select[name="interestedIn"]').value;
-  let message = document.querySelector('textarea[name="message"]').value;
-
-  let text = `Hello, I have an enquiry:%0A
-Name: ${name}%0A
-Phone: ${phone}%0A
-Email: ${email}%0A
-Interested In: ${interest}%0A
-Message: ${message}`;
-
-  let whatsappURL = `https://wa.me/919665755702?text=${text}`;
-
-  window.open(whatsappURL, "_blank");
-}
-
-const quotes = {
-  English: [
-    "Quality is not an act, it is a habit in construction.",
-    "Good buildings come from good people, and all problems are solved by good planning.",
-    "Safety first, because nothing is more important than human life on a construction site.",
-    "Strong foundations make strong structures.",
-    "Innovation and precision are the pillars of every great project.",
-    "Timely delivery reflects discipline and professionalism in construction.",
-    "A building is only as good as the teamwork behind it.",
-    "Sustainable construction is the future of modern architecture.",
-    "Planning, patience, and persistence build better projects.",
-    "Every project starts with a vision and ends with excellence.",
-    "Trust is the foundation of every successful project.",
-    "Reliability and transparency build long-term relationships with clients.",
-    "A trustworthy contractor ensures peace of mind for every client.",
-    "Clients value honesty and integrity more than anything in construction.",
-    "Trust, combined with expertise, creates remarkable structures."
-  ],
-  Hindi: [
-    "निर्माण में गुणवत्ता केवल एक क्रिया नहीं, बल्कि एक आदत है।",
-    "अच्छी इमारतें अच्छे लोगों से बनती हैं, और सभी समस्याएं अच्छी योजना से हल होती हैं।",
-    "सुरक्षा पहले, क्योंकि निर्माण स्थल पर मानव जीवन से अधिक महत्वपूर्ण कुछ नहीं।",
-    "मजबूत नींव मजबूत संरचनाएँ बनाती हैं।",
-    "नवाचार और सटीकता हर महान परियोजना के स्तंभ हैं।",
-    "समय पर कार्य पूरा करना निर्माण में अनुशासन और पेशेवरिता को दर्शाता है।",
-    "भरोसेमंद ठेकेदार हर ग्राहक के लिए मानसिक शांति सुनिश्चित करता है।",
-    "विश्वसनीयता और पारदर्शिता दीर्घकालिक ग्राहक संबंध बनाती हैं।",
-    "क्लाइंट ईमानदारी और सत्यनिष्ठा को सबसे अधिक महत्व देते हैं।",
-    "योजना, धैर्य और लगातार प्रयास बेहतर परियोजनाएँ बनाते हैं।"
-  ],
-  Marathi: [
-    "निर्माणात गुणवत्ता ही फक्त क्रिया नाही, तर सवय आहे.",
-    "चांगली इमारती चांगल्या लोकांपासून तयार होतात, आणि सर्व समस्या चांगल्या नियोजनाने सोडवल्या जातात.",
-    "सुरक्षा सर्वप्रथम, कारण बांधकाम स्थळी मानवाचे जीवन सर्वोच्च आहे.",
-    "मजबूत पाया मजबूत संरचना तयार करतो.",
-    "नवोन्मेष आणि अचूकता प्रत्येक महान प्रकल्पाचे स्तंभ आहेत.",
-    "वेळेवर प्रकल्प पूर्ण करणे व्यावसायिकता आणि शिस्त दर्शवते.",
-    "विश्वासार्ह ठेकेदार प्रत्येक ग्राहकासाठी मानसिक शांतता सुनिश्चित करतो.",
-    "विश्वास आणि पारदर्शकता दीर्घकालीन ग्राहक संबंध तयार करतात.",
-    "ग्राहक ईमानदारी आणि प्रामाणिकपणाला जास्त महत्त्व देतात.",
-    "योजना, संयम, आणि सातत्यपूर्ण प्रयत्न उत्तम प्रकल्प तयार करतात."
-  ]
-};
-
-// On button click, pick a random language and random quote
-document.getElementById("getQuoteBtn").addEventListener("click", function() {
-  const languages = Object.keys(quotes);
-  const randomLang = languages[Math.floor(Math.random() * languages.length)];
-  const langQuotes = quotes[randomLang];
-  const randomQuote = langQuotes[Math.floor(Math.random() * langQuotes.length)];
-
-  document.getElementById("quoteDisplay").innerText = randomQuote;
-});
+ 
 </script>
 </body>
 </html>
