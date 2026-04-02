@@ -113,7 +113,56 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
 });
+/*  mail sender */
 
+function sendEnquiryMail() {
+
+  const form = document.querySelector(".contact-form");
+
+  const fullName = form.fullName.value;
+  const phone = form.phone.value;
+  const email = form.email.value;
+  const interestedIn = form.interestedIn.value;
+  const message = form.message.value;
+
+  const data = {
+    fullName: fullName,
+    phone: phone,
+    email: email,
+    interestedIn: interestedIn,
+    message: message
+  };
+/* https://anthil-backend.onrender.com/api/enquiry/send  */
+fetch("https://anthil-backend.onrender.com/api/enquiry/send", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify(data)
+})
+.then(response => {
+
+  if (!response.ok) {
+    throw new Error("Server error: " + response.status);
+  }
+
+  return response.text();   // 👈 use text instead of json
+
+})
+.then(result => {
+
+  alert(result);   // shows "Enquiry sent successfully!"
+  form.reset();
+
+})
+.catch(error => {
+
+  alert("Error sending enquiry ❌");
+  console.error(error);
+
+});
+
+}
 
 /* ================= WHATSAPP FUNCTION ================= */
 
